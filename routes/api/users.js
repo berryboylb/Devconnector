@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 //import the User model from models folder
@@ -61,8 +63,23 @@ router.post('/',
 
         //Return jsonwebtoken
 
-        res.send('User has been registered');
-        User.findOne()
+        //create a pyload first
+        const payload = {
+            user: {
+                id: user.id
+            }
+        }
+
+        jwt.sign(
+            payload, 
+            config.get('jwtSecret'),
+            { expiresIn: 360000 },
+            (err, token) => {
+                if(err) throw err;
+                res.json({ token });
+            }
+        );
+        //res.send('User has been registered');
     }
     catch(err) {
         console.log(err.message);

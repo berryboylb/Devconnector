@@ -1,3 +1,4 @@
 {
-    "mongoURI" : "mongodb+srv://Reavel:test1234@devconnector.cb9tp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    "mongoURI" : "mongodb+srv://Reavel:test1234@devconnector.cb9tp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwtSecret": "appsecrettoken"
 }
