@@ -1,4 +1,6 @@
 {
     "mongoURI" : "mongodb+srv://Reavel:test1234@devconnector.cb9tp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    "jwtSecret": "appsecrettoken"
+    "jwtSecret": "appsecrettoken",
+    "githubClientId": "d5a2e7f1760baae93a63",
+    "githubSecret": "d21d47e7cd74da4a9cf4cde85d1a461a39031678"
 }
