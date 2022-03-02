@@ -230,4 +230,146 @@ router.delete("/experience/:exp_id", auth, async (req, res) => {
     }
 });
 
+//@route    Put api/profile/experience/:exp_id
+//@description  edit profile experience
+//@access private
+router.put("/experience/:exp_id", auth, async (req, res) => {
+    const {
+        title,
+        company,
+        location,
+        from,
+        to, 
+        current,
+        description
+    } = req.body;
+    try {
+        const profile = await Profile.findOne({ user: req.user.id });
+        //get index of the array to be edited
+        const editIndex = profile.experience.map(item => item.id).indexOf(req.params.exp_id);
+        if(profile) {
+            profile.experience[editIndex];
+            if(title) profile.experience[editIndex].title = title;
+            if(company) profile.experience[editIndex].company = company;
+            if(location) profile.experience[editIndex].location = location;
+            if(from) profile.experience[editIndex].from = from;
+            if(to) profile.experience[editIndex].to = to;
+            if(current) profile.experience[editIndex].current = current;
+            if(description) profile.experience[editIndex].description = description;
+            await profile.save();
+            res.json(profile);
+        }
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+
+//@route    PUT api/profile/education
+//@description add profile education
+//@access private
+router.put('/education', [auth, 
+    [
+        check('school', 'School is required').not().isEmpty(),
+        check('degree', 'degree is required').not().isEmpty(),
+        check('fieldofstudy', 'Field of study is required').not().isEmpty(),
+        check('from', 'From Date is required').not().isEmpty(),
+    ]
+], async (req, res) => {
+    //get valiadtion result
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        //if there are errors
+        return res.status(400).json({ errors: errors.array()});
+    }
+
+    const {
+        school,
+        degree,
+        fieldofstudy,
+        from,
+        to, 
+        current,
+        description
+    } = req.body;
+
+    //build our education object
+    const newEducation = {
+        school,
+        degree,
+        fieldofstudy,
+        from,
+        to, 
+        current,
+        description
+    }
+
+    //submit to mongodb
+    try {
+        const profile = await Profile.findOne({ user: req.user.id });
+        profile.education.unshift(newEducation);  
+        await profile.save();
+        res.json(profile);
+    } 
+    catch (err) {
+        console.log(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+//@route    Delete api/profile/education/:edu_id
+//@description  delete profile education
+//@access private
+router.delete("/education/:edu_id", auth, async (req, res) => {
+    try {
+        const profile = await Profile.findOne({ user: req.user.id });
+
+        //get remove index
+        const removeIndex = profile.education.map(item => item.id).indexOf(req.params.edu_id);
+        profile.education.splice(removeIndex, 1);
+        await profile.save();
+        res.json(profile);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+
+//@route    Put api/profile/education/:edu_id
+//@description  edit profile experience
+//@access private
+router.put("/education/:edu_id", auth, async (req, res) => {
+    const {
+        school,
+        degree,
+        fieldofstudy,
+        from,
+        to, 
+        current,
+        description
+    } = req.body;
+    try {
+        const profile = await Profile.findOne({ user: req.user.id });
+        //get index of the array to be edited
+        const editIndex = profile.education.map(item => item.id).indexOf(req.params.edu_id);
+        if(profile) {
+            profile.education[editIndex];
+            if(school) profile.education[editIndex].school = school;
+            if(degree) profile.education[editIndex].degree = degree;
+            if(fieldofstudy) profile.education[editIndex].fieldofstudy = fieldofstudy;
+            if(from) profile.education[editIndex].from = from;
+            if(to) profile.education[editIndex].to = to;
+            if(current) profile.education[editIndex].current = current;
+            if(description) profile.education[editIndex].description = description;
+            await profile.save();
+            res.json(profile);
+        }
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 module.exports = router;
