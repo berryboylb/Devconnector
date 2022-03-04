@@ -17,6 +17,12 @@ app.use('/api/users', require("./routes/api/users"));
 app.use('/api/auth', require("./routes/api/auth"));
 app.use('/api/profile', require("./routes/api/profile"));
 app.use('/api/posts', require("./routes/api/posts"));
+app.all('*', (req, res) => {
+    res.send({
+      code: 404,
+      message: "route doesn't exist"
+    })
+})
 
 const PORT = process.env.PORT || 5000;
 
