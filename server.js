@@ -1,5 +1,7 @@
 const express = require('express');
+const cors = require('cors')
 const app = express();
+app.use(cors());
 //require the db
 const connectDB = require('./config/db');
 //callthe function
