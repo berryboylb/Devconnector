@@ -4,9 +4,14 @@ import Landing from './components/Layout/Landing';
 import Navbar from './components/Layout/Navbar';
 import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
+//Redux 
+import { Provider } from 'react-redux';
+import store from './store';
+
 
 function App() {
   return (
+    <Provider store={store}>
       <Router>
         <Navbar/>
         <Routes>
@@ -15,6 +20,7 @@ function App() {
           <Route path = "/login" element={<Login/>} />
         </Routes>
       </Router>
+    </Provider>
   );
 }
 
