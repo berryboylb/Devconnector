@@ -4,7 +4,8 @@ import Landing from './components/Layout/Landing';
 import Navbar from './components/Layout/Navbar';
 import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
-//Redux 
+/*Redux 
+provider allows our store to be accessed from anywhere*/
 import { Provider } from 'react-redux';
 import store from './store';
 
