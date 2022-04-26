@@ -20,6 +20,8 @@
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.3",
+    "react-responsive": "^9.0.0-beta.6",
+    "react-spinners": "^0.11.0",
     "request": "^2.88.2"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors');
 const app = express();
 app.use(cors());
 //require the db
@@ -25,4 +25,4 @@ app.all('*', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, ()=> console.log(`Server is listening on port ${PORT}`))
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`))
