@@ -5,7 +5,7 @@ import { faUserCircle, faBlackboard, faGraduationCap } from '@fortawesome/free-s
 
 const DashboardActions = () => {
   return (
-    <div class="dash-buttons">
+    <div className="dash-buttons">
         <Link to="/edit-profile" className="btn btn-light"><FontAwesomeIcon icon={faUserCircle} /> Edit Profile</Link>
         <Link to="/add-experience" className="btn btn-light"><FontAwesomeIcon icon={faBlackboard} /> Add Experience</Link>
         <Link to="/add-education" className="btn btn-light"><FontAwesomeIcon icon={ faGraduationCap} /> Add Education</Link>
