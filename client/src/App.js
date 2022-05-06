@@ -21,6 +21,7 @@ import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/Profile/Profile";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import Posts from "./components/posts/Posts";
+import Post from "./components/post/Post";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -88,6 +89,11 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="/post/:id" element={
+            <PrivateRoute>
+              <Post/>
+            </PrivateRoute>
+          }/>
           <Route path="/profiles" element={<Profiles />} />
           <Route path="/profile/:id" element={<Profile />} />
         </Routes>

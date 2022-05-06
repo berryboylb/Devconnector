@@ -6,6 +6,7 @@ import Spinner from "../Layout/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import PostItem from "./PostItem";
+import PostForm from "./PostForm";
 
 const Posts = ({ getPosts, post: { loading, posts } }) => {
   useEffect(() => {
@@ -19,7 +20,7 @@ const Posts = ({ getPosts, post: { loading, posts } }) => {
       <p className="lead">
         <FontAwesomeIcon icon={faUser} /> Welcome to the community.
       </p>
-      {/* POST FORM */}
+        <PostForm/>
       <div className="posts"> 
         {posts.map(post => (
             <PostItem key={post._id} post={post} />
